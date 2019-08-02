@@ -105,36 +105,30 @@ function addProduct(newProdName, newProdPrice) {
 //Using a class contructor
 
 function addProductWithClass(newProdName, newProdPrice) {
-  const product = new Product(newProdName, newProdPrice);
+  debugger;
+  const product = new Product(newProdName, newProdPrice, "article", "product");
   product.addToDom("product-container");
 }
 
 class Product {
-  constructor(prodName, prodPrice) {
+  constructor(prodName, prodPrice, elementType, elementClassName) {
     this.prodName = prodName;
     this.prodPrice = prodPrice;
-    this.htmlElement = null;
-  }
-
-  createElement() {
-    this.htmlElement = document.createElement("article");
-    this.htmlElement.className = "product";
+    this.htmlElement = document.createElement(elementType);
+    this.htmlElement.className = elementClassName;
     this.htmlElement.innerHTML = `
-      <div class="title">
-        ${this.prodName}
-      </div>
-      <div>$ <span class="price">${this.prodPrice}</span></div>
-      <div>
-        QNTY
-        <input class="quantity" type="number" value="0" />
-      </div>
-      <div>$ <span class="subtotal">0.00</span></div>
-      <button class="btn btn-delete">Delete</button>`;
+    <div class="title">
+      ${this.prodName}
+    </div>
+    <div>$ <span class="price">${this.prodPrice}</span></div>
+    <div>
+      QNTY
+      <input class="quantity" type="number" value="0" />
+    </div>
+    <div>$ <span class="subtotal">0.00</span></div>
+    <button class="btn btn-delete">Delete</button>`;
   }
-
   addToDom(domNode) {
-    debugger;
-    this.createElement();
     const parent = document.getElementById(domNode);
     parent.appendChild(this.htmlElement);
   }
